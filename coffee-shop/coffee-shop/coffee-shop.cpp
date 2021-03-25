@@ -34,6 +34,18 @@ void displayList(COFFEE* head)
 	}
 }
 
+void calculatePrice(COFFEE* head)
+{
+	COFFEE* list = head;
+	while (list != NULL)
+	{
+		cout << list->articul << " ";
+		cout << (float)list->count * list->price << " ";
+		list = list->next;
+		cout << endl;
+	}
+}
+
 int main()
 {
 	COFFEE* head = NULL;
