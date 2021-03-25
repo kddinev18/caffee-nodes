@@ -10,6 +10,12 @@ struct COFFEE {
 	COFFEE* next = NULL;
 };
 
+struct BOUUGHTTHINGS {
+	string name;
+	float price = 0;
+	BOUUGHTTHINGS* next = NULL;
+};
+
 COFFEE* prependNode(COFFEE* head, string articul, int count, float price)
 {
 	COFFEE* newNode = new COFFEE;
@@ -144,14 +150,64 @@ void search(COFFEE* head)
 
 }
 
+bool mainMenu(COFFEE* head)
+{
+	cout << "1. Buy" << endl;
+	cout << "2. Pay" << endl;
+	cout << "3. Find the cheapest product" << endl;
+	cout << "4. Find the most expensive product" << endl;
+	cout << "5. Search" << endl;
+	cout << "6. Show menu" << endl;
+	cout << "0. Exit" << endl;
+
+	int option;
+	cin >> option;
+	switch (option)
+	{
+	case 1:
+
+		return true;
+		break;
+	case 2:
+
+		return true;
+		break;
+	case 3:
+		cout << findMinPrize(head) << endl;
+		return true;
+		break;
+	case 4:
+		cout << findMaxPrize(head) << endl;
+		return true;
+		break;
+	case 5:
+		search(head);
+		cout << endl;
+		return true;
+		break;
+	case 6:
+		displayList(head);
+		return true;
+		break;
+	case 0:
+
+		return false;
+		break;
+	}
+
+}
+
+
 int main()
 {
 	COFFEE* head = NULL;
+	BOUUGHTTHINGS* head2 = NULL;
 	string articuls;
 	int num;
 	float price1;
 	int addCount;
 
+	cout << "enter number: ";
 	cin >> addCount;
 
 	for (int i = 0; i < addCount; i++)
@@ -161,10 +217,16 @@ int main()
 		cin >> price1;
 		head = prependNode(head, articuls, num, price1);
 	}
+	
+	/*bool exit = false;
+	do {
+		exit = mainMenu(head);
+	} while (exit);*/
 
-	search(head);
 
-	/*displayList(head);
+
+
+	displayList(head);
 	cout << "Choose index: ";
 	int option;
 	cin >> option;
@@ -176,11 +238,12 @@ int main()
 	}
 	if (list->count == 1)
 	{
+
 		removeSpecialNode(head, list->articul);
 	}
 	else
 	{
 		list->count--;
 	}
-	displayList(head);*/
+	displayList(head);
 }
