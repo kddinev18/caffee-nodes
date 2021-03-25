@@ -46,6 +46,47 @@ void calculatePrice(COFFEE* head)
 	}
 }
 
+bool mainMenu()
+{
+	cout << "1. Buy" << endl;
+	cout << "2. Pay" << endl;
+	cout << "3. Find the cheapest product" << endl;
+	cout << "4. Find the most expensive product" << endl;
+	cout << "5. Search" << endl;
+	cout << "0. Exit" << endl;
+
+	int option;
+	cin >> option;
+	switch (option)
+	{
+	case 1:
+
+		return true;
+		break;
+	case 2:
+
+		return true;
+		break;
+	case 3:
+
+		return true;
+		break;
+	case 4:
+
+		return true;
+		break;
+	case 5:
+
+		return true;
+		break;
+	case 0:
+
+		return false;
+		break;
+	}
+
+}
+
 int main()
 {
 	COFFEE* head = NULL;
