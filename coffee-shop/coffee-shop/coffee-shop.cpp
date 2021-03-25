@@ -56,7 +56,57 @@ void removeSpecialNode(COFFEE* head, string wantedArtucule)
 	}
 }
 
+float findMaxPrize(COFFEE* head)
+{
+	COFFEE* list = head;
+	float maxPrice = list->price;
+	while (list != NULL)
+	{
+		if (maxPrice < list->price)
+		{
+			maxPrice = list->price;
+		}
+		list = list->next;
+	}
+	return maxPrice;
+}
 
+float findMinPrize(COFFEE* head)
+{
+	COFFEE* list = head;
+	float minPrice = list->price;
+	while (list != NULL)
+	{
+		if (minPrice > list->price)
+		{
+			minPrice = list->price;
+		}
+		list = list->next;
+	}
+	return minPrice;
+}
+
+/*void search(COFFEE* head)
+{
+	cout << "1. name" << endl;
+	cout << "2. count" << endl;
+	cout << "3. price" << endl;
+
+	int option;
+	cin >> option;
+
+	switch (option)
+	{
+
+	case 1:
+		break;
+	case 2:
+		break;
+	case 3:
+		break;
+	}
+
+}*/
 
 int main()
 {
@@ -76,9 +126,9 @@ int main()
 		head = prependNode(head, articuls, num, price1);
 	}
 
+	cout << findMinPrize(head);
 
-
-	displayList(head);
+	/*displayList(head);
 	cout << "Choose index: ";
 	int option;
 	cin >> option;
@@ -96,5 +146,5 @@ int main()
 	{
 		list->count--;
 	}
-	displayList(head);
+	displayList(head);*/
 }
