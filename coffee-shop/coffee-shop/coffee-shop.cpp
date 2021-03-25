@@ -24,8 +24,10 @@ COFFEE* prependNode(COFFEE* head, string articul, int count, float price)
 void displayList(COFFEE* head)
 {
 	COFFEE* list = head;
+	int count = 0;
 	while (list != NULL)
 	{
+		cout << count++ << ". ";
 		cout << list->articul << " ";
 		cout << list->count << " ";
 		cout << list->price << " ";
@@ -34,58 +36,27 @@ void displayList(COFFEE* head)
 	}
 }
 
-void calculatePrice(COFFEE* head)
+void removeSpecialNode(COFFEE* head, string wantedArtucule)
 {
-	COFFEE* list = head;
-	while (list != NULL)
+	if (head->next == NULL)
 	{
-		cout << list->articul << " ";
-		cout << (float)list->count * list->price << " ";
-		list = list->next;
-		cout << endl;
+		return;
+	}
+	COFFEE* prev = head;
+	COFFEE* tempt = head->next;
+	if (tempt->articul == wantedArtucule)
+	{
+		tempt = head->next;
+		prev->next = tempt->next;
+		delete tempt;
+	}
+	else
+	{
+		removeSpecialNode(head->next, wantedArtucule);
 	}
 }
 
-bool mainMenu()
-{
-	cout << "1. Buy" << endl;
-	cout << "2. Pay" << endl;
-	cout << "3. Find the cheapest product" << endl;
-	cout << "4. Find the most expensive product" << endl;
-	cout << "5. Search" << endl;
-	cout << "0. Exit" << endl;
 
-	int option;
-	cin >> option;
-	switch (option)
-	{
-	case 1:
-
-		return true;
-		break;
-	case 2:
-
-		return true;
-		break;
-	case 3:
-
-		return true;
-		break;
-	case 4:
-
-		return true;
-		break;
-	case 5:
-
-		return true;
-		break;
-	case 0:
-
-		return false;
-		break;
-	}
-
-}
 
 int main()
 {
@@ -93,12 +64,37 @@ int main()
 	string articuls;
 	int num;
 	float price1;
+	int addCount;
 
-	for (int i = 0; i < 3; i++)
+	cin >> addCount;
+
+	for (int i = 0; i < addCount; i++)
 	{
 		cin >> articuls;
 		cin >> num;
 		cin >> price1;
 		head = prependNode(head, articuls, num, price1);
 	}
+
+
+
+	displayList(head);
+	cout << "Choose index: ";
+	int option;
+	cin >> option;
+
+	COFFEE* list = head;
+	for (int i = 0; i < option; i++)
+	{
+		list = list->next;
+	}
+	if (list->count == 1)
+	{
+		removeSpecialNode(head, list->articul);
+	}
+	else
+	{
+		list->count--;
+	}
+	displayList(head);
 }
