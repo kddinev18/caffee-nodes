@@ -86,7 +86,7 @@ float findMinPrize(COFFEE* head)
 	return minPrice;
 }
 
-/*void search(COFFEE* head)
+void search(COFFEE* head)
 {
 	cout << "1. name" << endl;
 	cout << "2. count" << endl;
@@ -95,18 +95,54 @@ float findMinPrize(COFFEE* head)
 	int option;
 	cin >> option;
 
+	COFFEE* list = head;
+	string name;
+	int count;
+	float price;
 	switch (option)
 	{
-
 	case 1:
+		cin >> name;
+		while (list != NULL)
+		{
+			if (name == list->articul)
+			{
+				cout << "found";
+				return;
+			}
+			list = list->next;
+		}
+		cout << "not found";
 		break;
 	case 2:
+		cin >> count;
+		while (list != NULL)
+		{
+			if (count == list->count)
+			{
+				cout << "found";
+				return;
+			}
+			list = list->next;
+		}
+		cout << "not found";
 		break;
 	case 3:
+		cin >> price;
+		while (list != NULL)
+		{
+			if (price == list->price)
+			{
+				cout << "found";
+				return;
+			}
+			list = list->next;
+		}
+		cout << "not found";
 		break;
 	}
 
-}*/
+}
 
 int main()
 {
@@ -126,7 +162,7 @@ int main()
 		head = prependNode(head, articuls, num, price1);
 	}
 
-	cout << findMinPrize(head);
+	search(head);
 
 	/*displayList(head);
 	cout << "Choose index: ";
