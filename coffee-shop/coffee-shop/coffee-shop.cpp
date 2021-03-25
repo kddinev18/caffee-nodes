@@ -10,27 +10,11 @@ struct COFFEE {
 	COFFEE* next = NULL;
 };
 
-struct BOUUGHTTHINGS {
-	string name;
-	float price = 0.00;
-	BOUUGHTTHINGS* next = NULL;
-};
-
 COFFEE* prependNode(COFFEE* head, string articul, int count, float price)
 {
 	COFFEE* newNode = new COFFEE;
 	newNode->articul = articul;
 	newNode->count = count;
-	newNode->price = price;
-	newNode->next = head;
-	head = newNode;
-	return head;
-}
-
-BOUUGHTTHINGS* prependNode2(BOUUGHTTHINGS* head, string name, float price)
-{
-	BOUUGHTTHINGS* newNode = new BOUUGHTTHINGS;
-	newNode->name = name;
 	newNode->price = price;
 	newNode->next = head;
 	head = newNode;
@@ -173,7 +157,7 @@ void search(COFFEE* head)
 
 }
 
-void buy(COFFEE* head, BOUUGHTTHINGS* head2)
+void buy(COFFEE* head)
 {
 	displayList(head);
 	cout << "Choose index: ";
@@ -193,37 +177,22 @@ void buy(COFFEE* head, BOUUGHTTHINGS* head2)
 		}
 		else
 		{
-			head2 = prependNode2(head2, list->articul, list->price);
 			removeSpecialNode(head, list->articul);
 		}
 	}
 	else
 	{
-		head2 = prependNode2(head2, list->articul, list->price);
 		list->count--;
 	}
 }
 
-float checkOut(BOUUGHTTHINGS* head2)
-{
-	float totalPrice = 0.00;
-	BOUUGHTTHINGS* list = head2;
-	while (list != NULL)
-	{
-		totalPrice += list->price;
-		list = list->next;
-	}
-	return totalPrice;
-}
-
-bool mainMenu(COFFEE* head, BOUUGHTTHINGS* head2)
+bool mainMenu(COFFEE* head)
 {
 	cout << "1. Buy" << endl;
-	cout << "2. Pay" << endl;
-	cout << "3. Find the cheapest product" << endl;
-	cout << "4. Find the most expensive product" << endl;
-	cout << "5. Search" << endl;
-	cout << "6. Show menu" << endl;
+	cout << "2. Find the cheapest product" << endl;
+	cout << "3. Find the most expensive product" << endl;
+	cout << "4. Search" << endl;
+	cout << "5. Show menu" << endl;
 	cout << "0. Exit" << endl;
 
 	int option;
@@ -231,27 +200,23 @@ bool mainMenu(COFFEE* head, BOUUGHTTHINGS* head2)
 	switch (option)
 	{
 	case 1:
-		buy(head, head2);
+		buy(head);
 		return true;
 		break;
 	case 2:
-		cout << checkOut(head2) << endl;
-		return true;
-		break;
-	case 3:
 		cout << findMinPrize(head) << endl;
 		return true;
 		break;
-	case 4:
+	case 3:
 		cout << findMaxPrize(head) << endl;
 		return true;
 		break;
-	case 5:
+	case 4:
 		search(head);
 		cout << endl;
 		return true;
 		break;
-	case 6:
+	case 5:
 		displayList(head);
 		return true;
 		break;
@@ -267,7 +232,6 @@ bool mainMenu(COFFEE* head, BOUUGHTTHINGS* head2)
 int main()
 {
 	COFFEE* head = NULL;
-	BOUUGHTTHINGS* head2 = NULL;
 	string articuls;
 	int num;
 	float price1;
@@ -286,7 +250,7 @@ int main()
 	
 	bool exit = false;
 	do {
-		exit = mainMenu(head,head2);
+		exit = mainMenu(head);
 	} while (exit);
 
 }
