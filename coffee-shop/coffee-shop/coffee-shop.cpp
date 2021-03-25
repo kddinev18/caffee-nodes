@@ -10,7 +10,29 @@ struct COFFEE {
 	COFFEE* next = NULL;
 };
 
+COFFEE* prependNode(COFFEE* head, string articul, int count, float price)
+{
+	COFFEE* newNode = new COFFEE;
+	newNode->articul = articul;
+	newNode->count = count;
+	newNode->price = price;
+	newNode->next = head;
+	head = newNode;
+	return head;
+}
+
 int main()
 {
-    std::cout << "Hello World!\n";
+	COFFEE* head = NULL;
+	string articuls;
+	int num;
+	float price1;
+
+	for (int i = 0; i < 3; i++)
+	{
+		cin >> articuls;
+		cin >> num;
+		cin >> price1;
+		head = prependNode(head, articuls, num, price1);
+	}
 }
