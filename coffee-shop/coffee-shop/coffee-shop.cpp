@@ -21,6 +21,19 @@ COFFEE* prependNode(COFFEE* head, string articul, int count, float price)
 	return head;
 }
 
+void displayList(COFFEE* head)
+{
+	COFFEE* list = head;
+	while (list != NULL)
+	{
+		cout << list->articul << " ";
+		cout << list->count << " ";
+		cout << list->price << " ";
+		list = list->next;
+		cout << endl;
+	}
+}
+
 int main()
 {
 	COFFEE* head = NULL;
